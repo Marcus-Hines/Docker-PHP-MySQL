@@ -1,0 +1,25 @@
+version: '3.3'
+services:
+  web:
+    image: php:7.3-apache
+    container_name: php73
+    volumes:
+      - ./src:/var/www/html/
+    ports:
+      - 8000:80
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: your_password
+      MYSQL_DATABASE: test_db
+      MYSQL_USER: user
+      MYSQL_PASSWORD: your_password
+    ports:
+      - 9906:3306
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - 8080:80
+    links:
+      - db:mysql
+      
